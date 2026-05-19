@@ -33,7 +33,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: published-app
-          path: published/
+          path: bin/published/
   deploy:
     runs-on: ubuntu-latest
     needs: publish
