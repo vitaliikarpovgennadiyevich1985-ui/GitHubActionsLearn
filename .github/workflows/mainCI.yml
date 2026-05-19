@@ -1,0 +1,36 @@
+name: Main CI
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Repository
+        uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '10.0.0'
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build -c ${{vars.BUILDCONFIGURATION}} -r ${{vars.BUILDPLATFORM}} --no-restore
+      - name: Test
+        run: dotnet test --no-restore --no-build
+  publish:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download Repository
+        uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '10.0.0'
+      - name: Publish
+        run: dotnet publish WebApplication/WebApplication.csproj -c ${{vars.BUILDCONFIGURATION}} -r ${{vars.BUILDPLATFORM}} -o bin/published/
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: published-app
+          path: published/
