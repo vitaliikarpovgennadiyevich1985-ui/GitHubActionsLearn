@@ -25,3 +25,5 @@ WebApplication/bin/
 WebApplication/obj/
 WebApplication/.vs/
 .vs/
+bin/
+obj/
