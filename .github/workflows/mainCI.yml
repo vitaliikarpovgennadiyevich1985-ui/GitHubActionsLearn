@@ -30,7 +30,18 @@ jobs:
       - name: Publish
         run: dotnet publish WebApplication/WebApplication.csproj -c ${{vars.BUILDCONFIGURATION}} -r ${{vars.BUILDPLATFORM}} -o bin/published/
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v7
         with:
           name: published-app
           path: published/
+  deploy:
+    runs-on: ubuntu-latest
+    needs: publish
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v7
+        with:
+          name: published-app
+      - run: ls
+      - run: echo Deployed
+  
