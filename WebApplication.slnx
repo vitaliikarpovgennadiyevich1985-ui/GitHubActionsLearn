@@ -1,3 +1,8 @@
 <Solution>
-  <Project Path="WebApplication/WebApplication.csproj" />
+  <Configurations>
+    <Platform Name="x64" />
+  </Configurations>
+  <Project Path="WebApplication/WebApplication.csproj">
+    <Platform Project="x64" />
+  </Project>
 </Solution>
