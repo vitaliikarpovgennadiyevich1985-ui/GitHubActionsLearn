@@ -9,7 +9,7 @@ env:
   Environment: "Prod"
 
 jobs:
-  build:
+  buildAndTest:
     environment: Prod
     runs-on: ubuntu-latest
     steps:
@@ -24,11 +24,15 @@ jobs:
       - name: Build
         run: dotnet build -c ${{vars.BUILDCONFIGURATION}} --no-restore
       - name: Test
+        id: TestingStep
         run: dotnet test --no-restore --no-build
+      - name: Running Failed Testing Report
+        if: failure() && steps.TestingStep.outcome == 'failure'
+        run: echo "Generating Failed Testing Report"
   publish:
     environment: Prod
     runs-on: ubuntu-latest
-    needs: build
+    needs: buildAndTest
     steps:
       - name: Download Repository
         uses: actions/checkout@v3
