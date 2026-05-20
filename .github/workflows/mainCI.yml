@@ -54,4 +54,6 @@ jobs:
           name: published-app
       - run: ls
       - run: echo "Deployed to ${{ env.Environment }}"
+      - run: echo "Sql Server Login ${{ secrets.SQLSERVER_LOGIN }}"
+      - run: echo "Sql Server PASSWORD ${{ secrets.SQLSERVER_PASSWORD }}"
   
