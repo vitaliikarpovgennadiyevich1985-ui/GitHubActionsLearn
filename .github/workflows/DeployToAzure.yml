@@ -12,16 +12,24 @@ on:
         required: true
       azurePassword:
         required: true
+    outputs:
+       azureDeploymentResult:
+        description: "Result of an Azure Deployment process"
+        value: ${{ jobs.deployToAzure.outputs.deploymentResult }}      
 jobs:  
   
-  deploy:        
+  deployToAzure:        
     runs-on: ubuntu-latest
+    outputs:
+      deploymentResult: ${{ steps.azureDeploymentStep.outputs.deploymentResult }}
     steps:
       - name: Download Artifacts
+        id: azureDeploymentStep
         uses: actions/download-artifact@v7
         with:
           name: ${{ inputs.deployedArtifactName }}
       - run: ls
       - run: echo "Deployed to Azure using Login ${{ secrets.azureLogin }} and Password ${{ secrets.azurePassword }}"
+      - run: echo "deploymentResult=Deployed To Azure Successfully" >> $GITHUB_OUTPUT
 
   
