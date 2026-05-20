@@ -7,10 +7,14 @@ on:
         required: true
         type: string
         default: "published-app-data"       
-
+    secrets:
+      azureLogin:
+        required: true
+      azurePassword:
+        required: true
 jobs:  
   
-  deploy:    
+  deploy:        
     runs-on: ubuntu-latest
     steps:
       - name: Download Artifacts
@@ -18,6 +22,6 @@ jobs:
         with:
           name: ${{ inputs.deployedArtifactName }}
       - run: ls
-      - run: echo "Deployed"    
+      - run: echo "Deployed to Azure using Login ${{ secrets.azureLogin }} and Password ${{ secrets.azurePassword }}"
 
   
