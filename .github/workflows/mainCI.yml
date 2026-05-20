@@ -1,11 +1,16 @@
 name: Main CI
-on: [push, workflow_dispatch]
+on: 
+  push:
+    branches:
+      - main
+  workflow_dispatch:    
 
 env:
   Environment: "Dev"
 
 jobs:
   build:
+    environment: Prod
     runs-on: ubuntu-latest
     steps:
       - name: Download Repository
@@ -21,6 +26,7 @@ jobs:
       - name: Test
         run: dotnet test --no-restore --no-build
   publish:
+    environment: Prod
     runs-on: ubuntu-latest
     needs: build
     steps:
@@ -38,6 +44,7 @@ jobs:
           name: published-app
           path: bin/published/
   deploy:
+    environment: Prod
     runs-on: ubuntu-latest
     needs: publish
     steps:
