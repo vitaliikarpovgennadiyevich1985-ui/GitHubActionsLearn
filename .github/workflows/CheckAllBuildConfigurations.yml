@@ -1,0 +1,24 @@
+name: CheckAllBuildConfigurations
+on:   
+  workflow_dispatch:
+
+jobs:  
+  
+  build:    
+    strategy:
+      matrix:
+        buildConfiguration: [Debug, Release]
+  
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Repository
+        uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.x'
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build -c ${{ matrix.buildConfiguration }} --no-restore    
+  
