@@ -10,7 +10,7 @@ env:
 
 jobs:
   build:
-    environment: ${{ env.Environment }}
+    environment: Prod
     runs-on: ubuntu-latest
     steps:
       - name: Download Repository
