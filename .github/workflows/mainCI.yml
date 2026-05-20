@@ -56,6 +56,9 @@ jobs:
     uses: "./.github/workflows/DeployToAzure.yml"
     with:
       deployedArtifactName: "published-app"
+    secrets:
+      AzureLogin: ${{ secrets.AzureLogin }}
+      AzurePassword: ${{ secrets.AzurePassword }}
   
   deploy:
     environment: Prod
