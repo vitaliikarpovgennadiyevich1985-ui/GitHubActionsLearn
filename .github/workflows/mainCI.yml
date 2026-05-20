@@ -57,8 +57,8 @@ jobs:
     with:
       deployedArtifactName: "published-app"
     secrets:
-      AzureLogin: ${{ secrets.AzureLogin }}
-      AzurePassword: ${{ secrets.AzurePassword }}
+      azureLogin: ${{ secrets.AzureLogin }}
+      azurePassword: ${{ secrets.AzurePassword }}
   
   deploy:
     environment: Prod
