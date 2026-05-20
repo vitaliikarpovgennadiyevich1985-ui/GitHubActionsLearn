@@ -1,0 +1,23 @@
+name: DeployToAzure
+on:
+  workflow_call: 
+    inputs:
+      deployedArtifactName:
+        description: "The name of the Deployed asp.net Core Web Application to be deployed to Azure"
+        required: true
+        type: string
+        default: "published-app"       
+
+jobs:  
+  
+  deploy:    
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v7
+        with:
+          name: ${{ inputs.deployedArtifactName }}
+      - run: ls
+      - run: echo "Deployed"    
+
+  
