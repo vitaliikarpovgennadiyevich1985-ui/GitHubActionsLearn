@@ -51,6 +51,12 @@ jobs:
           name: published-app
           path: bin/published/
   
+  deployToAzure:
+    needs: publish
+    uses: .github/workflows/DeployToAzure.yml
+    with:
+      deployedArtifactName: "published-app"
+  
   deploy:
     environment: Prod
     runs-on: ubuntu-latest
