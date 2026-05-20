@@ -23,13 +23,13 @@ jobs:
     outputs:
       deploymentResult: ${{ steps.azureDeploymentStep.outputs.deploymentResult }}
     steps:
-      - name: Download Artifacts
-        id: azureDeploymentStep
+      - name: Download Artifacts        
         uses: actions/download-artifact@v7
         with:
-          name: ${{ inputs.deployedArtifactName }}
-      - run: ls
-      - run: echo "Deployed to Azure using Login ${{ secrets.azureLogin }} and Password ${{ secrets.azurePassword }}"
-      - run: echo "deploymentResult=Deployed To Azure Successfully" >> $GITHUB_OUTPUT
+          name: ${{ inputs.deployedArtifactName }}        
+      - run: ls      
+      - name: Run Deployment To Azure
+        id: azureDeploymentStep
+        run: echo "Deployed to Azure using Login ${{ secrets.azureLogin }} and Password ${{ secrets.azurePassword }}"  
 
   
