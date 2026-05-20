@@ -53,7 +53,7 @@ jobs:
   
   deployToAzure:
     needs: publish
-    uses: .github/workflows/DeployToAzure.yml
+    uses: "./.github/workflows/DeployToAzure.yml"
     with:
       deployedArtifactName: "published-app"
   
