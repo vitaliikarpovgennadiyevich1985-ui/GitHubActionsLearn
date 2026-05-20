@@ -8,6 +8,7 @@ jobs:
     strategy:
       matrix:
         buildConfiguration: [Debug, Release]
+        dotNetVersion: [6.0.x, 8.0.x]
   
     runs-on: ubuntu-latest
     steps:
@@ -16,7 +17,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: ${{ matrix.dotNetVersion }}
       - name: Restore dependencies
         run: dotnet restore
       - name: Build
