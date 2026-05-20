@@ -6,11 +6,11 @@ on:
   workflow_dispatch:    
 
 env:
-  Environment: "Dev"
+  Environment: "Prod"
 
 jobs:
   build:
-    environment: Prod
+    environment: env:Environment
     runs-on: ubuntu-latest
     steps:
       - name: Download Repository
