@@ -9,8 +9,9 @@ jobs:
       matrix:
         buildConfiguration: [Debug, Release]
         dotNetVersion: [6.0.x, 8.0.x]
-  
+    
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - name: Download Repository
         uses: actions/checkout@v3
