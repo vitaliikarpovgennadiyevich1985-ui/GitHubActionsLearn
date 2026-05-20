@@ -65,8 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Showing Azure Deplotment Results
-        run: |
-          echo "Azure Deployment Result: ${{ needs.deployToAzure.outputs.azureDeploymentResult }}"
+        run: echo "Azure Deployment Result ${{ needs.deployToAzure.outputs.azureDeploymentResult }}"
   
   deploy:
     environment: Prod
