@@ -17,7 +17,7 @@ on:
         description: "Result of an Azure Deployment process"
         value: ${{ jobs.deployToAzure.outputs.deploymentResult }}      
 jobs:  
-  
+
   deployToAzure:        
     runs-on: ubuntu-latest
     outputs:
@@ -29,7 +29,10 @@ jobs:
           name: ${{ inputs.deployedArtifactName }}        
       - run: ls      
       - name: Run Deployment To Azure
-        id: azureDeploymentStep
-        run: echo "Deployed to Azure using Login ${{ secrets.azureLogin }} and Password ${{ secrets.azurePassword }}"  
+        id: azureDeploymentStep        
+        run: |
+          echo "Deploying To Azure"
+          echo "Successfullt Deployed To Azure"
+          echo "deploymentResult=Successfully Deployed To Azure Using Reusable Workflow" >> $GITHUB_OUTPUT
 
   
