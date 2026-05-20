@@ -26,6 +26,7 @@ jobs:
         run: dotnet build -c ${{vars.BUILDCONFIGURATION}} --no-restore
       - name: Test
         id: TestingStep
+        #continue-on-error: true
         run: dotnet test --no-restore --no-build
       - name: Running Failed Testing Report
         if: failure() && steps.TestingStep.outcome == 'failure'
