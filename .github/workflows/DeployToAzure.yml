@@ -6,7 +6,7 @@ on:
         description: "The name of the Deployed asp.net Core Web Application to be deployed to Azure"
         required: true
         type: string
-        default: "published-app"       
+        default: "published-app-data"       
 
 jobs:  
   
